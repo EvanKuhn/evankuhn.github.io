@@ -1,0 +1,126 @@
+Possible Posts
+--------------
+Metrics and Graphite
+- Why are metrics important?
+- What is Graphite?
+- Graphite Component Replacements
+
+A minimal graphite system
+- A working graphite install using vagrant
+- Examine the configs and services
+- Feed in some metrics
+- (see posts below)
+
+
+
+
+
+Cache and Whisper
+- how they work
+- configuration
+- examining the whisper file (whisper-dump.py)
+- calculating whisper file size (whisper-calculator.py)
+- script to generate metrics
+- line format vs pickle format
+- how big is a whisper data point?  float vs int?
+- how whisper stores data
+  - https://docs.google.com/a/brightroll.com/document/d/1T1OY_WY77L8t0dWhWJgHZu9dVWg43HE3BCNIIxVA3Mc/edit#heading=h.mmscizs7o407
+
+Aggregator
+- provide a sample script to generate metrics with hostname and datacenter
+- what the aggregator does
+- how to configure it
+
+Relay
+- what it does: load balancing vs forwarding
+- relay methods: rules, consistent-hashing, aggregated-consistent-hashing
+- configuration (which files are affected)?
+
+Misc tips
+- start with a standard metric path format
+- how to plan out data usage
+- graphite is not the right tool for storing non-recurring metrics
+  - because each new metric creates a new-fixed size whisper file
+  - you should be sending the same set of metrics repeatedly, every interval
+- tcpdump is your friend
+- Line format vs pickle format
+- You better be using SSD's!
+
+References
+- list a bunch here
+- best docs are in the configs themselves
+- useful videos and articles
+
+Scaling the Graphite Daemons
+- breaking out the caches (relay to caches)
+- adding aggregators
+- why we need aggregated-consistent-hashing
+- forwarding to other graphites
+
+Resource limits
+- cpu: your daemons are running hot!
+- disk: iops and writes/sec. If you're on spindles, you are doing lots of seeks.
+- include a generate_load.rb script
+- at this point you need to start thinking outside of the box
+- multiple disks for more write throughput
+- offloading cpu load onto another box
+- running different software: daemon replacements, whisper replacements
+- running tcp vs udp
+- tcp tuning, send/recv buffer sizes, etc
+
+carbon-c-relay
+- problems we were having: cpu usage high, super-complex daemon config on host
+- easier to configure
+- easier to run multiple threads to use all cores
+- waaaay more efficient
+- still a bit young
+- how to install
+- sample config file with working aggregation
+
+Investigating InfluxDB
+- does it have better write throughput?
+
+Scaling Graphite Horizontally
+- how does this even work?
+
+
+
+
+[23:07:45] ekuhn@evan-yahoo-mac:~/mygit/blog/vagrant/basic_graphite (master)
+$ gem install puppet --version 3.4.3
+$ puppet module install boyand-graphite --target-dir modules
+$ vagrant up --provision
+
+
+
+
+
+
+
+## Installation
+
+A quick Google search will return a number of good articles on installing and configuring Graphite, so I won't write another. What I *will* do, though, is give you a vagrant file that will configure a simple Graphite host for you. Then we'll take a look at it.
+
+TODO: vagrant file
+
+
+## Architecture
+
+TODO: go over the simple architecture
+
+
+## Configuration
+
+TODO: examine the config files
+
+
+## Feeding your graphite
+
+TODO: line format, pickle format, echo|nc
+
+
+## Viewing metrics
+
+TODO: Graphite Web, curl
+
+
