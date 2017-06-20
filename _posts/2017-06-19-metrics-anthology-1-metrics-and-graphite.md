@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "Metrics Anthology 1: Metrics and Graphite"
-date:   2017-06-19 19:05:00 -0400
+title: "Metrics Anthology 1: Metrics and Graphite"
+author: Evan Kuhn
+date: 2017-06-19 19:05:00 -0400
 categories: metrics
 summary: An introduction to common metrics services.
 ---
