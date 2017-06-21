@@ -10,7 +10,6 @@ summary: The evolution of Pinterest's architecture and tech stack, and lessons l
 From the YouTube video: [GOTO 2014 • Scaling Pinterest • Marty Weiner](https://www.youtube.com/watch?v=jQNCuD_hxdQ) <br/>
 Slides are available [on SlideShare](https://www.slideshare.net/InfoQ/scaling-pinterest)
 
-
 - Evolution:
   - Started March 2010.  Rackspace.  1 web enginer, 1 MySQL DB, 1 engineer + 2 founders
   - Jan 2011: AWS, 1 nginx + 4 app servers, 1 mysql + 1 read slave, 1 task queue + 2 workers (emails, etc), 1 MongoDB (counters), 2 engineers + 2 founders

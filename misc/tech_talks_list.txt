@@ -1,0 +1,20 @@
+GOTO 2013 • Career Advice for Programmers • Trisha Gee
+https://www.youtube.com/watch?v=LlAn452X4Lc
+
+GOTO 2012 • Scaling Yourself • Scott Hanselman
+https://www.youtube.com/watch?v=FS1mnISoG7U
+
+Scaling the Data Infrastructure at Instagram
+https://www.youtube.com/watch?v=1sPgogJlKWM&t=1s
+
+Operations at Twitter: Scaling Beyond 100 Million Users
+https://www.youtube.com/watch?v=z8LU0Cj6BOU&t=1s
+
+GOTO 2016 • What I Wish I Had Known Before Scaling Uber to 1000 Services • Matt Ranney
+https://www.youtube.com/watch?v=kb-m2fasdDY
+
+
+
+More on my lists:
+- https://www.youtube.com/playlist?list=PLi9mX4cWk82Q8_FQheOylq9UK8A1NMGAn
+
