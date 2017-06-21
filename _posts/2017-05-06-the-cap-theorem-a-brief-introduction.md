@@ -2,7 +2,7 @@
 layout: post
 title: "The CAP Theorem: a Brief Introduction"
 author: Evan Kuhn
-date: 2017-06-20 23:00:00 -0400
+date: 2017-05-06 09:00:00 -0400
 categories: distributed
 summary: An introduction to the CAP theorem, it's proof, and a discussion of partition tolerance.
 ---

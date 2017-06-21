@@ -2,12 +2,14 @@
 layout: post
 title: "Tech Talk: GOTO 2014 - Scaling Pinterest - Marty Weiner"
 author: Evan Kuhn
-date: 2017-06-20 19:05:00 -0400
+date: 2017-06-19 19:05:00 -0400
 categories: techtalks
 summary: The evolution of Pinterest's architecture and tech stack, and lessons learned.
 ---
 
-From the YouTube video: [GOTO 2014 • Scaling Pinterest • Marty Weiner](https://www.youtube.com/watch?v=jQNCuD_hxdQ)
+From the YouTube video: [GOTO 2014 • Scaling Pinterest • Marty Weiner](https://www.youtube.com/watch?v=jQNCuD_hxdQ) <br/>
+Slides are available [on SlideShare](https://www.slideshare.net/InfoQ/scaling-pinterest)
+
 
 - Evolution:
   - Started March 2010.  Rackspace.  1 web enginer, 1 MySQL DB, 1 engineer + 2 founders
@@ -75,6 +77,3 @@ From the YouTube video: [GOTO 2014 • Scaling Pinterest • Marty Weiner](https
   - More than 400 people
   - Continually improve pinner experience, and collaboration
 - Have fun, build a good culture, make sure employees are happy
-
-Slides available on SlideShare:
-[https://www.slideshare.net/InfoQ/scaling-pinterest](https://www.slideshare.net/InfoQ/scaling-pinterest)
