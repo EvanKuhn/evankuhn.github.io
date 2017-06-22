@@ -3,7 +3,7 @@ layout: post
 title: "The CAP Theorem: a Brief Introduction"
 author: Evan Kuhn
 date: 2017-05-06 09:00:00 -0400
-categories: distributed-systems
+categories: distributed-computing
 summary: An introduction to the CAP theorem, it's proof, and a discussion of partition tolerance.
 ---
 
@@ -50,19 +50,19 @@ Thus, CA defines the operating range (eg: *"this system requires a non-partition
 
 So, must you choose P?  While a CA system is valid, network partitions can occur for any system, so you must consider the desired behavior for the system in such a case.  Would you prefer that it be consistent (CP) or available (AP)?
 
-## Sources
+## References
 
-1. ["CAP Theorem" (video)](https://www.youtube.com/watch?v=Jw1iFr4v58M), by Michael L. Perry <br/>
-Simple and clear explanation, including proof.
+[1] Perry, Michael L. ["CAP Theorem."](https://www.youtube.com/watch?v=Jw1iFr4v58M) 04 Jul 2010. YouTube. <br/>
+*Simple and clear explanation, including proof.*
 
-1. ["Better explaining the CAP Theorem"](https://dzone.com/articles/better-explaining-cap-theorem), by Lior Messinger <br/>
-Simple, clear. Touches on why Partition Tolerance cannot be sacrificed.
+[2] Messinger, Lior. ["Better explaining the CAP Theorem."](https://dzone.com/articles/better-explaining-cap-theorem) 17 Feb 2013. DZone. <br/>
+*Simple, clear. Touches on why partition tolerance cannot be sacrificed.*
 
-1. ["You Can’t Sacrifice Partition Tolerance"](https://codahale.com/you-cant-sacrifice-partition-tolerance/), by Coda Hale <br/>
-In-depth discussion of partition tolerance, a little verbose.
+[3] Hale, Coda. ["You Can’t Sacrifice Partition Tolerance."](https://codahale.com/you-cant-sacrifice-partition-tolerance/) 10 Oct 2010. <br/>
+*In-depth discussion of partition tolerance.*
 
-1. [CAP Theorem Revisited](http://robertgreiner.com/2014/08/cap-theorem-revisited/), by Robert Greiner <br/>
-Simple explanation of why you must choose P, so your choices are AP or CP.
+[4] Greiner, Robert. ["CAP Theorem Revisited."](http://robertgreiner.com/2014/08/cap-theorem-revisited/) 14 Aug 2014. <br/>
+*Simple explanation of why you must choose P, so your choices are AP or CP.*
 
-1. [The unclear CP vs. CA case in CAP](http://blog.thislongrun.com/2015/04/the-unclear-cp-vs-ca-case-in-cap.html), by Nicolas Liochon <br/>
-In-depth discussion of CP vs CA, and why CA is valid.
+[5] Liochon, Nicolas. ["The unclear CP vs. CA case in CAP."](http://blog.thislongrun.com/2015/04/the-unclear-cp-vs-ca-case-in-cap.html) 05 Apr 2015. <br/>
+*In-depth discussion of CP vs CA, and why CA is valid.*
