@@ -1,3 +1,7 @@
+AWS re:Invent 2015: Scaling Up to Your First 10 Million Users (ARC301)
+https://www.youtube.com/watch?v=vg5onp8TU6Q
+- See also: http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html
+
 GOTO 2013 • Career Advice for Programmers • Trisha Gee
 https://www.youtube.com/watch?v=LlAn452X4Lc
 
@@ -17,4 +21,3 @@ https://www.youtube.com/watch?v=kb-m2fasdDY
 
 More on my lists:
 - https://www.youtube.com/playlist?list=PLi9mX4cWk82Q8_FQheOylq9UK8A1NMGAn
-

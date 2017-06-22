@@ -74,13 +74,12 @@ You might also look into parallelizing components of your web application logic 
 1. Write daemons / microservices that read these MQ requests and respond.
 1. In your web app, wait for all MQ responses and return the result to the client.
 
-![Web App Parallelized Process Flow](https://docs.google.com/drawings/d/13UsGTkTSj_QE4jiIiEaZXXDtb3voZOg3FE88lM2nkwQ/pub?w=1128&h=518)
+![UML sequence diagram for serial vs parallel processing](https://docs.google.com/drawings/d/13UsGTkTSj_QE4jiIiEaZXXDtb3voZOg3FE88lM2nkwQ/pub?w=1128&h=518)
 
 Results:
 - You've parallelized slow pieces of code that previously ran in series.
 - You can scale your MQ daemons onto multiple backend servers.
 - You can also scale MQ daemon servers on demand.
-
 
 ## References
 

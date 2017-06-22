@@ -21,7 +21,7 @@ Slides are available [on SlideShare](https://www.slideshare.net/InfoQ/scaling-pi
     - Lots of EC2. 135 web engines, 75 API engines, 80 MySQL DBs + 1 slave, 110 redis, 60 memcache. 12 engineers, 10 non-eng. Were able to scale out now.
 - Next problem: scaling people
   - April 2013: split up into individual teams.  Data pipeline, search, biz and platform, spam, growth, infra + ops.
-  - Then moved to San Francisco.  Lots more people.  More offices.  Difficult to communicate.  
+  - Then moved to San Francisco.  Lots more people.  More offices.  Difficult to communicate.
 - Technologies:
   - ELB => software router => python web layer
   - Every user-generated image lives on S3, fronted by CDN like Akamai
@@ -29,8 +29,8 @@ Slides are available [on SlideShare](https://www.slideshare.net/InfoQ/scaling-pi
   - Each DB tech (mysql, memcache, redis, hbase) fronted by a service
   - Data Pipeline: everything goes into Kafka.  Read from Kafka and process the data.
 - Architecture
-  - ![Pinterest Architecture Overview](https://image.slidesharecdn.com/untitled-140104111714-phpapp02/95/scaling-pinterest-32-638.jpg)
-  - ![Pinterest Data Pipeline](https://image.slidesharecdn.com/untitled-140104111714-phpapp02/95/scaling-pinterest-33-638.jpg)
+  - [![Pinterest Architecture](https://image.slidesharecdn.com/untitled-140104111714-phpapp02/95/scaling-pinterest-32-638.jpg)](https://image.slidesharecdn.com/untitled-140104111714-phpapp02/95/scaling-pinterest-32-638.jpg)
+  - [![Pinterest Data Pipeline](https://image.slidesharecdn.com/untitled-140104111714-phpapp02/95/scaling-pinterest-33-638.jpg)](https://image.slidesharecdn.com/untitled-140104111714-phpapp02/95/scaling-pinterest-33-638.jpg)
 - **Choosing your tech**
   - Does it meet your needs?
   - How mature is it?  (Maturity = blood and sweat / complexity)
