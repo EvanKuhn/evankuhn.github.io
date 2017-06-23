@@ -4,26 +4,26 @@ layout: null
 [
   {% for post in site.posts %}
     {
-      "title"    : "{{ post.title | escape }}",
-      "category" : "{{ post.category }}",
-      "tags"     : "{{ post.tags | array_to_sentence_string }}",
-      "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "date"     : "{{ post.date }}",
-      "summary"  : "{{ post.summary }}",
-      "content"  : {{ post.content | jsonify }}
+      "title"       : "{{ post.title | escape }}",
+      "category"    : "{{ post.category }}",
+      "tags"        : "{{ post.tags | array_to_sentence_string }}",
+      "url"         : "{{ site.baseurl }}{{ post.url }}",
+      "date"        : "{{ post.date }}",
+      "description" : "{{ post.description }}",
+      "content"     : {{ page.content | jsonify }}
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
   ,
   {% for page in site.pages %}
    {
      {% if page.title != nil %}
-        "title"    : "{{ page.title | escape }}",
-        "category" : "{{ page.category }}",
-        "tags"     : "{{ page.tags | join: ', ' }}",
-        "url"      : "{{ site.baseurl }}{{ page.url }}",
-        "date"     : "{{ page.date }}",
-        "summary"  : "{{ post.summary }}",
-        "content"  : {{ page.content | jsonify }}
+        "title"       : "{{ page.title | escape }}",
+        "category"    : "{{ page.category }}",
+        "tags"        : "{{ page.tags | join: ', ' }}",
+        "url"         : "{{ site.baseurl }}{{ page.url }}",
+        "date"        : "{{ page.date }}",
+        "description" : "{{ page.description }}",
+        "content"     : {{ page.content | jsonify }}
      {% endif %}
    } {% unless forloop.last %},{% endunless %}
   {% endfor %}

@@ -4,7 +4,7 @@ title: "Adding Simple Search to your Jekyll Blog"
 author: Evan Kuhn
 date: 2017-06-22 17:25:00 -0400
 categories: webdev
-summary: How to add simple search functionality to your Jekyll blog.
+description: How to add simple search functionality to your Jekyll blog.
 ---
 
 ## Overview

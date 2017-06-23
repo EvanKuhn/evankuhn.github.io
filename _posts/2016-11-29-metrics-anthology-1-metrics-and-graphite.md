@@ -4,7 +4,7 @@ title: "Metrics Anthology 1: Metrics and Graphite"
 author: Evan Kuhn
 date: 2016-11-29 10:00:00 -0700
 categories: metrics
-summary: An introduction to common metrics services.
+description: An introduction to common metrics services.
 ---
 
 ## Why are Metrics Important?

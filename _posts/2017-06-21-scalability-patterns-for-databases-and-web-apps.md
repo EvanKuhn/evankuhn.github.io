@@ -4,7 +4,7 @@ title: "Scalability Patterns for Databases and Web Apps"
 author: Evan Kuhn
 date: 2017-06-17 21:45:00 -0400
 categories: distributed-computing
-summary: Common patterns used to scale relational databases and web apps.
+description: Common patterns used to scale relational databases and web apps.
 ---
 
 This post outlines some commonly-used techniques and patterns for scaling out a relational database or web application. You can find many resources online that dive further into the details.

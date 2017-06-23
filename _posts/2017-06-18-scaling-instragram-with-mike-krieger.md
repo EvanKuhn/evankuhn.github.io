@@ -4,7 +4,7 @@ title: "Tech Talk: Scaling Instagram with Mike Krieger"
 author: Evan Kuhn
 date: 2017-06-18 18:05:00 -0400
 categories: techtalks
-summary: How Instragram scaled their infrastructure, and lessons learned.
+description: How Instragram scaled their infrastructure, and lessons learned.
 ---
 
 From the YouTube video [Scaling Instagram with Mike Krieger

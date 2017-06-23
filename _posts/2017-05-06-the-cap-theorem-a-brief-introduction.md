@@ -4,7 +4,7 @@ title: "The CAP Theorem: a Brief Introduction"
 author: Evan Kuhn
 date: 2017-05-06 09:00:00 -0400
 categories: distributed-computing
-summary: An introduction to the CAP theorem, it's proof, and a discussion of partition tolerance.
+description: An introduction to the CAP theorem, it's proof, and a discussion of partition tolerance.
 ---
 
 ## The Basics

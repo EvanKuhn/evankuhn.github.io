@@ -4,7 +4,7 @@ title: "Tech Talk: Drew Houston - Finding Your Way as an Entrepreneur"
 author: Evan Kuhn
 date: 2017-06-17 16:00:00 -0400
 categories: techtalks
-summary: Drew's story of founding Dropbox, scaling up, and lessons learned.
+description: Drew's story of founding Dropbox, scaling up, and lessons learned.
 ---
 
 From the YouTube video: [Drew Houston (Founder Dropbox) - Talk - Finding Your Way as an Entrepreneur @ Stanford University

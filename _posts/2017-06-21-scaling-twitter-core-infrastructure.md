@@ -4,7 +4,7 @@ title: "Tech Talk: Scaling Twitter Core Infrastructure"
 author: Evan Kuhn
 date: 2017-06-21 11:37:00 -0400
 categories: techtalks
-summary: A few scaling principles learned while scaling Twitter's infrastructure.
+description: A few scaling principles learned while scaling Twitter's infrastructure.
 ---
 
 From the YouTube video: [Flight Lightning - Scaling Twitter core infrastructure](https://www.youtube.com/watch?v=6OvrFkLSoZ0)

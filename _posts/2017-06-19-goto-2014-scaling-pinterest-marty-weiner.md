@@ -4,7 +4,7 @@ title: "Tech Talk: GOTO 2014 - Scaling Pinterest - Marty Weiner"
 author: Evan Kuhn
 date: 2017-06-19 19:05:00 -0400
 categories: techtalks
-summary: The evolution of Pinterest's architecture and tech stack, and lessons learned.
+description: The evolution of Pinterest's architecture and tech stack, and lessons learned.
 ---
 
 From the YouTube video: [GOTO 2014 • Scaling Pinterest • Marty Weiner](https://www.youtube.com/watch?v=jQNCuD_hxdQ) <br/>

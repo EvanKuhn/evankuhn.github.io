@@ -16,10 +16,9 @@
 title: Evan's Tech Blog
 author: Evan Kuhn
 email:
-description: >
-  On software engineering and such
+description: On software engineering and such
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://evankuhn.github.io"
 twitter_username: jekyllrb
 github_username:  jekyll
 
@@ -28,6 +27,7 @@ markdown: kramdown
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
