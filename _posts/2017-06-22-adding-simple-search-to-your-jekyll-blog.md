@@ -4,7 +4,7 @@ title: "Adding Simple Search to your Jekyll Blog"
 author: Evan Kuhn
 date: 2017-06-22 17:25:00 -0400
 categories: webdev
-summary: How to add simple search functionality to your Jekyll Blog.
+summary: How to add simple search functionality to your Jekyll blog.
 ---
 
 ## Overview
@@ -70,7 +70,7 @@ Now refresh your site and try searching. You should see the results list auto-co
 
 <div class="centered-image">
 <img src="/images/sample_search_results.png" alt="">
-<p>Sample search results</p>
+<p>Search will results auto-populate under the text box.</p>
 </div>
 
 Finally, note that I slightly modified the JavaScript code to clear the search results when the text box is empty, or when you press `Esc`.
