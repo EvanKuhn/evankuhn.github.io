@@ -21,11 +21,15 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://evankuhn.github.io"
 twitter_username: jekyllrb
 github_username:  jekyll
+github:
+  is_project_page: false
 
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-cayman
-plugins:
+# plugins_dir: _plugins
+# plugins: [jekyll-feed, jekyll-seo-tag, jekyll-tidy ]
+gems:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-tidy
