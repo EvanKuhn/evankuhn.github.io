@@ -1,8 +1,16 @@
 <section class="page-header">
-  <h1 class="project-name"><a href="/">{{ site.title | default: site.github.repository_name }}</a></h1>
-  <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-  {% if site.show_downloads %}
-    <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-    <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-  {% endif %}
+  <div class="header-center">
+    <div class="project-name"><a href="/">{{ site.title | default: site.github.repository_name }}</a></div>
+    <div class="project-tagline">{{ site.description | default: site.github.project_tagline }}</div>
+    <div class="site-links">
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="https://github.com/EvanKuhn">GitHub</a></li>
+      </ul>
+    </div>
+    {% if site.show_downloads %}
+      <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+      <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+    {% endif %}
+  </div>
 </section>

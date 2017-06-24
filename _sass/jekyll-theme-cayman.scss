@@ -93,27 +93,34 @@ a {
   background-image: linear-gradient(120deg, $header-bg-color-secondary, $header-bg-color);
 
   @include large {
-    padding: 3rem 6rem;
+    padding: 0.5rem 2rem;
   }
 
   @include medium {
-    padding: 2rem 4rem;
+    padding: 0.5rem 2rem;
   }
 
   @include small {
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
   }
+}
+
+.header-center {
+  max-width: $main-content-max-width;
+  padding: 0rem 6rem;
+  margin: 0 auto;
 }
 
 .project-name {
   margin-top: 0;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0rem;
+  font-weight: bold;
 
   a {
     text-decoration: none;
     color: $header-heading-color;
     &:hover {
-      color: rgba(255, 255, 255, 0.8);
+      color: $header-hover-color;
     }
   }
 
@@ -131,7 +138,7 @@ a {
 }
 
 .project-tagline {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-weight: normal;
   opacity: 0.7;
 
@@ -145,6 +152,27 @@ a {
 
   @include small {
     font-size: 1rem;
+  }
+}
+
+.site-links {
+  text-align: center;
+  a {
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+    padding-left: 1rem;
+  }
+  a:hover {
+    color: $header-hover-color;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline
   }
 }
 
@@ -165,7 +193,7 @@ a {
   }
 
   @include large {
-    max-width: 64rem;
+    max-width: $main-content-max-width;
     padding: 2rem 6rem;
     margin: 0 auto;
     font-size: 1.1rem;
