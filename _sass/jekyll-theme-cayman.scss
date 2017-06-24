@@ -376,8 +376,11 @@ a {
 }
 
 .site-footer-owner {
-  display: block;
-  font-weight: bold;
+  display: inline;
+}
+
+.rss-subscribe {
+  float: right;
 }
 
 .site-footer-credits {
