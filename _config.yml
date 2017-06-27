@@ -40,6 +40,10 @@ defaults:
     values:
       image: /favicon.png
 
+# A hack to set the publisher
+facebook:
+ publisher: Evan Kuhn
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
