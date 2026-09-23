@@ -29,10 +29,14 @@ markdown: kramdown
 theme: jekyll-theme-cayman
 # plugins_dir: _plugins
 # plugins: [jekyll-feed, jekyll-seo-tag, jekyll-tidy ]
-gems:
+plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-tidy
+
+# The feed is XML with CDATA sections, which htmlbeautifier can't parse
+jekyll_tidy:
+  exclude: ["feed.xml"]
 
 defaults:
   - scope:
