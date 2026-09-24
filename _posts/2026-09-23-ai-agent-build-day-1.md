@@ -143,13 +143,13 @@ achieved. While an assistant engages in a back-and-forth conversation with the u
 meant to work on a task and drive towards a goal with minimal user input.
 
 **Framework**\
-A software library for **building** AI applications and agents. Frameworks provide the parts such
+A software library for _building_ AI applications and agents. Frameworks provide the parts such
 as memory management, agent loops, tool definitions, etc. These parts can be composed and swapped
 out by the software engineer, as desired. Examples: LangChain, LlamaIndex, CrewAI, the Claude Agent
 SDK, the Vercel AI SDK. You write code *with* a framework.
 
 **Harness**\
-A harness is the code **around** a model that turns it into a working agent or assistant. It builds
+A harness is the code _around_ a model that turns it into a working agent or assistant. It builds
 the prompts to feed to the model, manages memory and context, define the tools, executes tool
 calls, enforces permissions, and implements behaviors like Retrieval Augmented Generation (RAG).
 Claude Code is a harness around the Claude model. A harness can greatly improve, or hinder, the
