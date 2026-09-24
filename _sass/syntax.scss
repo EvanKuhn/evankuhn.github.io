@@ -9,6 +9,11 @@
   --code-number: #0550AE;
   --code-name: #8250DF;
   --code-tag: #116329;
+
+  // Inline `code` in prose. Green, so it doesn't read as a (blue) link.
+  --code-inline-fg: #146B41;
+  --code-inline-bg: #EAF6EF;
+  --code-inline-border: #CDE8D8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +26,10 @@
     --code-number: #79C0FF;
     --code-name: #D2A8FF;
     --code-tag: #7EE787;
+
+    --code-inline-fg: #7FDCA4;
+    --code-inline-bg: #15251D;
+    --code-inline-border: #234031;
   }
 }
 
@@ -30,10 +39,14 @@ code, pre {
 }
 
 :not(pre) > code {
-  padding: 0.12em 0.4em;
+  padding: 0.1em 0.4em;
   border-radius: 5px;
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--code-inline-border);
+  background: var(--code-inline-bg);
+  color: var(--code-inline-fg);
+  // When inline code wraps, give each line its own padding and border
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 pre {
