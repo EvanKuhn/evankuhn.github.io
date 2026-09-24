@@ -16,7 +16,7 @@
 title: Evan's Tech Blog
 author: Evan Kuhn
 email:
-description: On software engineering and such
+description: On software engineering
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://evankuhn.github.io"
 twitter_username: jekyllrb

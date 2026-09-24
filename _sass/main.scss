@@ -440,6 +440,24 @@ img { max-width: 100%; height: auto; }
   p { font-size: 0.85rem; color: var(--muted); margin: 6px 0 0; }
 }
 
+// Round author photo on the About page
+.post-content .portrait {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  margin: 0 0 1.2em;
+}
+
+@media (min-width: 640px) {
+  .post-content .portrait {
+    float: right;
+    margin: 2.5em 0 1em 28px;
+  }
+}
+
 .post-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
