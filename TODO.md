@@ -1,0 +1,12 @@
+**TODO:**
+- Work through Google Search Console stuff for SEO
+- Add tech talk: Exploration of Twitter's infrastructure of the past, present, and future
+- Add Google Analytics: https://desiredpersona.com/google-analytics-jekyll/
+- Fill in the About page
+- Make search look better
+- Make list of posts more compact
+
+**POST IDEAS:**
+- AI Agent Build
+- SEO
+- Architectures
