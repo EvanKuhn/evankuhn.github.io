@@ -89,80 +89,73 @@ Ollama parses the following:
 This is done via the `convert_function_to_tool()` method in
 [`ollama/_utils.py`](https://github.com/ollama/ollama-python/blob/b28b1e8a8cf5436d06805e5bb211904e9ff53ef9/ollama/_utils.py#L56).
 
-### Chain-of-Thought Reasoning
+### Chain-of-Thought and Reasoning Models
 
-Chain-of-thought reasoning is a technique that models use to reason through complex queries and
-produce more accurate results. Rather than generating an answer immediately, the model is trained to
-think step-by-step, producing an internal monologue of "thoughts". This allows the model to reason
-in smaller steps, which it can then compose into a final answer.
-
-Chain-of-thought reasoning produces higher quality responses with fewer errors, though of course it
-does require more time and higher token usage.
+Chain-of-thought (CoT) is a technique in which a model is asked to generate intermediate reasoning
+steps before producing a final answer. Breaking a problem into smaller steps can improve performance
+on tasks that require multi-step reasoning, such as math and logic, though it generally requires
+more time and token usage.
 
 Google Researchers published the foundational paper
 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)
 in January 2022, in which they demonstrated that large language models could perform multi-step math
-and logic if the user provided a few step-by-step examples in the prompt.
+and logic more effectively when the user provided a few step-by-step examples in the prompt
 Later, in [Large Language Models are Zero-Shot Reasoners](https://arxiv.org/abs/2205.11916)
 (May 2022), Kojima et al. showed that simply adding the phrase _"Let's think step by step"_ in the
-prompt could unlock similar reasoning capabilities.
+prompt could elicit similar reasoning behavior.
 
-For clarification, note that **chain-of-thought prompting** involves prompting the model to reason
-in a step-by-step fashion. In contrast, a **reasoning model** is _trained_ to produce a thinking
-trace. These models can support different levels of reasoning (eg: low, medium, high).
+It is useful to distinguish chain-of-thought prompting from modern reasoning models.
+Chain-of-thought prompting attempts to elicit step-by-step reasoning through the prompt, and indeed
+the model output will show each of these intermediate thoughts. Reasoning models, in contrast, are
+specifically _trained_ to spend additional computation on reasoning before producing an answer.
+Reasoning models typically hide these intermediate "thinking" monologues from the user. The models'
+APIs may allow for controlling the level of reasoning (eg: low, medium, high), which effectively
+controls the token budget allocated for that query. As Andrej says, ["models need tokens to think"](https://www.youtube.com/watch?v=7xTGNNLPyMI).
 
-## Terminology
+## Agents, Frameworks, and Harnesses, oh my...
 
 This work has exposed me to a number of new terms, which require clarification. For completeness,
-I've also included some of the more basic terms (model, assistant). Definitions were shamelessly
-copied from Claude:
+I've also included some of the more basic terms (model, assistant).
 
 **Model**\
-The trained neural network: learned weights plus the architecture that uses them. It takes input
-(text, images, tokens) and produces output, usually by predicting one token at a time. On its own
-it has no memory between calls, no tools, and no goals. Examples: Llama 3, Claude Opus, GPT-5,
-Qwen. Sometimes "model" means the weights file, such as a GGUF you run in Ollama. Sometimes it
-means the hosted service behind an API.
+This is the trained neural network, consisting of both the model weights, and the program to read
+the weights file and run the neural network. The model takes tokens as input, and produces output by
+predicting one token at a time. The model has no memory, and no ability to use tools; it's just
+tokens in and tokens out. Examples: llama3.1, qwen3, Claude Opus 5.5, OpenAI GPT-6 Sol.
 
 **Assistant**\
-Two related meanings:
+This refers the AI model, wrapped in an app, and fine-tuned to act as a helpful assistant. It takes
+a user query and produces a highly-polished answer. An AI assistant is able to chat back and forth
+with the user, holding the current conversation (and potentially past convos) in memory.
 
-1. **A role in a conversation.** In chat formats, `assistant` marks the model's turns, as opposed
-   to `user`, `system` and `tool`.
-2. **A product built for conversation.** A model tuned to follow instructions and chat helpfully,
-   usually wrapped in an app. Examples: ChatGPT, the Claude app, Siri. An assistant mostly responds
-   to you one turn at a time.
+Note, in the context of interacting with a model, `assistant` refers to the model's role, in
+contrast to the `user` or `system` role.
 
 **Agent**\
-A system in which a model acts in a **loop**. It decides what to do, calls tools, looks at the
-results, and repeats until the goal is reached, with little human input between steps. The key
-difference from an assistant is **autonomy over several steps**. An agent doesn't just answer. It
-takes actions such as running code, browsing, or editing files. Examples: Claude Code, coding
-agents, research agents. The line between "assistant" and "agent" is blurry, since many assistants
-now use tools.
+An agent is a system in which a model acts in a loop to accomplish a task. In the common ReAct-style
+loop, the agent will reason => act => observe, and iterate again, repeating until the goal is
+achieved. While an assistant engages in a back-and-forth conversation with the user, an agent is
+meant to work on a task and drive towards a goal with minimal user input.
 
 **Framework**\
-A software library for **building** AI applications and agents. It supplies ready-made parts such as
-prompt templates, tool definitions, memory, retrieval, multi-agent coordination, and adapters for
-different model providers. Examples: LangChain, LlamaIndex, CrewAI, the Claude Agent SDK, the Vercel
-AI SDK. You write code *with* a framework.
+A software library for **building** AI applications and agents. Frameworks provide the parts such
+as memory management, agent loops, tool definitions, etc. These parts can be composed and swapped
+out by the software engineer, as desired. Examples: LangChain, LlamaIndex, CrewAI, the Claude Agent
+SDK, the Vercel AI SDK. You write code *with* a framework.
 
 **Harness**\
-The code **around** a model that turns it into a working agent or evaluation setup. It builds the
-prompt, provides the tools, runs the loop, executes tool calls, feeds results back, enforces
-permissions, and manages context. The term comes from "test harness." In evaluation, the harness
-runs a model through benchmark tasks and scores it. In agents, it's the scaffolding that makes a
-model act. For example, Claude Code is a harness around a Claude model. The same model can do much
-better or worse depending on its harness.
+A harness is the code **around** a model that turns it into a working agent or assistant. It builds
+the prompts to feed to the model, manages memory and context, define the tools, executes tool
+calls, enforces permissions, and implements behaviors like Retrieval Augmented Generation (RAG).
+Claude Code is a harness around the Claude model. A harness can greatly improve, or hinder, the
+performance of the underlying model.
 
-**Runtime**\
-The software that actually **executes** something. There are two common meanings:
+**Agent Runtime**\
+The environment in which the agent runs and keeps it state. This could be a hosted service that runs
+the agent loop, stores sessions, and provides sandboxes.
 
-1. **Inference runtime:** the engine that loads model weights and generates output on hardware.
-   Examples: llama.cpp (which Ollama uses internally), vLLM, TensorRT-LLM, ONNX Runtime.
-2. **Agent runtime:** the environment where an agent runs and keeps its state, such as a hosted
-   service that runs agent loops, stores sessions, and provides sandboxes. Example: Anthropic's
-   Managed Agents.
+Note that the **inference runtime** is the program that reads the model's weights files and
+runs the underlying LLM.
 
 **How they fit together**\
 Take Claude Code as an example:
@@ -172,14 +165,9 @@ Take Claude Code as an example:
 * Claude Code is the **harness**: it runs the loop, executes tools, and manages permissions and
   context.
 * The result behaves as an **agent**, because it completes multi-step coding tasks on its own.
-* It was built with, and is exposed as, the Claude Agent SDK, a **framework** you can use to build
-  your own agents.
-* Its conversation turns are labeled with the **assistant** role, and in casual use people call the
-  whole thing a coding assistant.
-
-A local setup might follow the same pattern: a Deepseek **model** served by Ollama's llama.cpp/GGLM
-**runtime**, driven by a LangChain-based (**framework**) **harness**, which together make an
-**agent**.
+* It was built with the Claude Agent SDK (the **framework**).
+* Claude Code effectively acts as a coding **assistant**, engaging the user in conversation and
+  helping to build software.
 
 ## What's next
 
