@@ -1,4 +1,5 @@
-<div id="search-container">
-  <input type="text" id="search-input" placeholder="Search...">
+<div class="search" id="search-container" role="search">
+  <label class="visually-hidden" for="search-input">Search posts</label>
+  <input type="search" id="search-input" placeholder="Search {{ site.posts.size }} posts" autocomplete="off">
   <ul id="results-container"></ul>
 </div>

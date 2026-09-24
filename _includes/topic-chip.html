@@ -1,0 +1,6 @@
+{%- assign hue = site.data.topics[include.topic] | default: 220 -%}
+{%- if include.link -%}
+<a class="chip" style="--h:{{ hue }}" href="{{ '/' | relative_url }}#topic-{{ include.topic }}">{{ include.topic }}</a>
+{%- else -%}
+<span class="chip" style="--h:{{ hue }}">{{ include.topic }}</span>
+{%- endif -%}

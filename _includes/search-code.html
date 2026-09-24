@@ -4,10 +4,18 @@
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
     json: '{{ site.baseurl }}/search.json',
-    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
-    noResultsText: 'No results found',
+    searchResultTemplate: '<li><a href="{url}"><strong>{title}</strong><span>{description}</span></a></li>',
+    noResultsText: '<li>No posts match that search.</li>',
     limit: 10,
     fuzzy: false,
     exclude: ['Welcome']
+  })
+
+  // Esc clears the search and closes the results
+  document.getElementById('search-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      this.value = '';
+      document.getElementById('results-container').innerHTML = '';
+    }
   })
 </script>

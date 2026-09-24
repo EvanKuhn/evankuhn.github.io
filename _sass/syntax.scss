@@ -1,0 +1,71 @@
+// Code blocks and Rouge syntax highlighting, with light and dark palettes.
+
+:root {
+  --code-bg: #F5F7FA;
+  --code-ink: #24292F;
+  --code-comment: #6A737D;
+  --code-keyword: #CF222E;
+  --code-string: #0A3069;
+  --code-number: #0550AE;
+  --code-name: #8250DF;
+  --code-tag: #116329;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --code-bg: #11161D;
+    --code-ink: #D6DCE4;
+    --code-comment: #7D8796;
+    --code-keyword: #FF7B72;
+    --code-string: #A5D6FF;
+    --code-number: #79C0FF;
+    --code-name: #D2A8FF;
+    --code-tag: #7EE787;
+  }
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+
+:not(pre) > code {
+  padding: 0.12em 0.4em;
+  border-radius: 5px;
+  background: var(--soft);
+  color: var(--ink);
+}
+
+pre {
+  margin: 0 0 1.1em;
+  padding: 14px 16px;
+  overflow-x: auto;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  line-height: 1.55;
+  tab-size: 2;
+
+  code { font-size: inherit; padding: 0; background: none; }
+}
+
+.highlighter-rouge .highlight { background: none; }
+
+.highlight {
+  .c, .ch, .cd, .cm, .cpf, .c1, .cs { color: var(--code-comment); font-style: italic; }
+  .cp { color: var(--code-comment); }
+  .k, .kc, .kd, .kn, .kp, .kr, .kv, .ow { color: var(--code-keyword); }
+  .kt, .nc, .nn { color: var(--code-name); }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .s1, .ss { color: var(--code-string); }
+  .sr { color: var(--code-tag); }
+  .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: var(--code-number); }
+  .nf, .fm, .nd { color: var(--code-name); }
+  .nb, .bp, .no { color: var(--code-number); }
+  .nt { color: var(--code-tag); }
+  .na, .nv, .vc, .vg, .vi, .vm { color: var(--code-number); }
+  .gd { color: var(--code-keyword); }
+  .gi { color: var(--code-tag); }
+  .gh, .gu { color: var(--code-name); font-weight: 600; }
+  .err { color: var(--code-keyword); }
+}

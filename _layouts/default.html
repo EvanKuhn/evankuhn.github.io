@@ -8,11 +8,11 @@
   <body>
     {% include header.html %}
 
-    <section class="main-content">
-      {% include search-box.html %}
+    <main class="site-main">
       {{ content }}
-      {% include footer.html %}
-    </section>
+    </main>
+
+    {% include footer.html %}
 
     {% if site.google_analytics %}
       {% include google-analytics.html %}

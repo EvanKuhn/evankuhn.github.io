@@ -1,16 +1,11 @@
-<section class="page-header">
-  <div class="header-center">
-    <div class="project-name"><a href="/">{{ site.title | default: site.github.repository_name }}</a></div>
-    <div class="project-tagline">{{ site.description | default: site.github.project_tagline }}</div>
-    <div class="site-links">
-      <ul>
-        <li><a href="/about">About</a></li>
-        <li><a href="https://github.com/EvanKuhn">GitHub</a></li>
-      </ul>
-    </div>
-    {% if site.show_downloads %}
-      <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-      <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-    {% endif %}
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}"><span class="monogram" aria-hidden="true">EK</span>{{ site.title }}</a>
+    {% include search-box.html %}
+    <nav class="site-nav" aria-label="Site">
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="https://github.com/EvanKuhn">GitHub</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </nav>
   </div>
-</section>
+</header>

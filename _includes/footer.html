@@ -1,7 +1,7 @@
 <footer class="site-footer">
-  <p>
-    &copy; {{ "now" | date: "%Y" }} Evan Kuhn<br/>
-    View <a href="{{ site.github.repository_url }}">on GitHub</a>
-    | Subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a>
-  </p>
+  <div class="inner">
+    <span>&copy; {{ "now" | date: "%Y" }} {{ site.author }}</span>
+    <a href="{{ site.github.repository_url }}">Source on GitHub</a>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>
+  </div>
 </footer>

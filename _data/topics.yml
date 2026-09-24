@@ -1,0 +1,9 @@
+# Hue (0-360) for each post category's chip color. New categories fall back
+# to a neutral blue until they're added here.
+ai: 292
+webdev: 200
+techtalks: 28
+distributed-computing: 258
+databases: 150
+metrics: 350
+linux: 48

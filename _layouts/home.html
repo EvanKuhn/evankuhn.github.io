@@ -2,24 +2,101 @@
 layout: default
 ---
 
-<div class="home">
+{%- comment -%}
+  Sort topics by post count (most first), then by name. Keys look like
+  "996|techtalks": the inverted, zero-padded count sorts correctly as a string.
+{%- endcomment -%}
+{%- assign topic_keys = "" | split: "" -%}
+{%- for category in site.categories -%}
+  {%- assign inverted = 999 | minus: category[1].size | prepend: "000" | slice: -3, 3 -%}
+  {%- capture key %}{{ inverted }}|{{ category[0] }}{% endcapture -%}
+  {%- assign topic_keys = topic_keys | push: key -%}
+{%- endfor -%}
+{%- assign topic_keys = topic_keys | sort -%}
 
-  <h1 class="page-heading">Posts</h1>
+<div class="index">
+  <aside class="topics" aria-labelledby="topics-label">
+    <h2 class="label" id="topics-label">Topics</h2>
+    <div class="topic-list">
+      <button class="topic" type="button" data-topic="all" aria-pressed="true"><span>All posts</span><span>{{ site.posts.size }}</span></button>
+      {%- for key in topic_keys -%}
+        {%- assign name = key | split: "|" | last %}
+      <button class="topic" type="button" data-topic="{{ name }}" aria-pressed="false"><span>{{ name }}</span><span>{{ site.categories[name].size }}</span></button>
+      {%- endfor %}
+    </div>
+  </aside>
 
-  {{ content }}
+  <div class="posts">
+    {{ content }}
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-        <p>{{ post.description }}</p>
-      </li>
-    {% endfor %}
-  </ul>
-
+    <div class="post-grid">
+      {%- for post in site.posts %}
+        {%- assign topic = post.categories | first %}
+      <a class="card surface{% if forloop.first %} is-lead{% endif %}" href="{{ post.url | relative_url }}" data-topic="{{ topic }}">
+        <span class="eyebrow">Latest post</span>
+        {% include topic-chip.html topic=topic %}
+        <h3>{{ post.title | escape }}</h3>
+        <p>{{ post.description | escape }}</p>
+        <span class="when">{{ post.date | date: "%b %-d, %Y" }} · {% include reading-time.html content=post.content %}</span>
+      </a>
+      {%- endfor %}
+      <div class="grid-head">
+        <h2 id="grid-title">Earlier posts</h2>
+        <span id="grid-count">{{ site.posts.size | minus: 1 }} posts</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  (function () {
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.topic'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+    var head = document.querySelector('.grid-head');
+    var title = document.getElementById('grid-title');
+    var count = document.getElementById('grid-count');
+
+    function show(topic) {
+      if (!buttons.some(function (b) { return b.dataset.topic === topic; })) topic = 'all';
+
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.topic === topic);
+      });
+
+      var visible = cards.filter(function (c) {
+        return topic === 'all' || c.dataset.topic === topic;
+      });
+      cards.forEach(function (c) {
+        c.hidden = visible.indexOf(c) === -1;
+        c.classList.remove('is-lead');
+      });
+      if (visible.length) {
+        visible[0].classList.add('is-lead');
+        visible[0].querySelector('.eyebrow').textContent =
+          topic === 'all' ? 'Latest post' : 'Latest in ' + topic;
+      }
+
+      var rest = visible.length - 1;
+      head.hidden = rest < 1;
+      title.textContent = topic === 'all' ? 'Earlier posts' : 'More in ' + topic;
+      count.textContent = rest + (rest === 1 ? ' post' : ' posts');
+
+      var hash = topic === 'all' ? '' : '#topic-' + topic;
+      if (location.hash !== hash) {
+        history.replaceState(null, '', location.pathname + location.search + hash);
+      }
+    }
+
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { show(b.dataset.topic); });
+    });
+
+    // Post pages link topic chips to /#topic-<name>
+    var match = location.hash.match(/^#topic-(.+)$/);
+    if (match) show(decodeURIComponent(match[1]));
+    window.addEventListener('hashchange', function () {
+      var m = location.hash.match(/^#topic-(.+)$/);
+      show(m ? decodeURIComponent(m[1]) : 'all');
+    });
+  })();
+</script>
