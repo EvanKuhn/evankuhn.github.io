@@ -6,6 +6,7 @@ date: 2026-09-23 17:25:00 -0700
 categories: ai
 description: Progress and lessons from building an AI agent in Python
 image: /images/ai_agent_day_1.jpg
+redirect_from: /ai/2026/09/24/ai-agent-build-day-1.html
 ---
 
 ![A cartoon robot at a laptop with Ollama and Python stickers, next to a whiteboard diagram of the

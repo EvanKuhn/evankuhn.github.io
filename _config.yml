@@ -25,6 +25,8 @@ github:
   is_project_page: false
 
 # Build settings
+# Post dates and URLs use this time zone, so local and GitHub builds match
+timezone: America/Los_Angeles
 markdown: kramdown
 # plugins_dir: _plugins
 # plugins: [jekyll-feed, jekyll-seo-tag, jekyll-tidy ]
@@ -32,6 +34,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-tidy
+  - jekyll-redirect-from
 
 # The feed is XML with CDATA sections, which htmlbeautifier can't parse
 jekyll_tidy:

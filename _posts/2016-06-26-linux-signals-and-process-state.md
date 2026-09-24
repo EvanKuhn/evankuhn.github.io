@@ -5,6 +5,7 @@ author: Evan Kuhn
 date: 2016-06-26 19:22:00 -0700
 categories: linux
 description: An overview of Linux signals, signal handling, and process states. And zombies!
+redirect_from: /linux/2016/06/27/linux-signals-and-process-state.html
 ---
 
 ## Intro to Signals
