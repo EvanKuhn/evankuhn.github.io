@@ -5,7 +5,11 @@ author: Evan Kuhn
 date: 2017-06-22 17:25:00 -0400
 categories: webdev
 description: How to add simple search functionality to your Jekyll blog.
+image: /images/jekyll-search.jpg
 ---
+
+![A laptop showing a Jekyll blog with a highlighted search box above a list of matching
+posts](/images/jekyll-search.jpg){: width="1400" height="788"}
 
 ## Overview
 

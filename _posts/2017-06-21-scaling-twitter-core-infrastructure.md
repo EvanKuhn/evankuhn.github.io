@@ -5,7 +5,12 @@ author: Evan Kuhn
 date: 2017-06-21 11:37:00 -0400
 categories: techtalks
 description: A few scaling principles learned while scaling Twitter's infrastructure.
+image: /images/scaling-twitter.jpg
 ---
+
+![Illustration of Twitter's architecture: clients, load balancers, application servers, message
+queues, storage, search, and cache, above dashboards for users, throughput, and
+latency](/images/scaling-twitter.jpg){: width="1400" height="788"}
 
 From the YouTube video: [Flight Lightning - Scaling Twitter core infrastructure](https://www.youtube.com/watch?v=6OvrFkLSoZ0)
 

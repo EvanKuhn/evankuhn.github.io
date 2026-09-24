@@ -5,13 +5,13 @@ author: Evan Kuhn
 date: 2026-09-23 17:25:00 -0700
 categories: ai
 description: Progress and lessons from building an AI agent in Python
-image: /images/ai_agent_day_1.jpg
+image: /images/ai-agent-day-1.jpg
 redirect_from: /ai/2026/09/24/ai-agent-build-day-1.html
 ---
 
 ![A cartoon robot at a laptop with Ollama and Python stickers, next to a whiteboard diagram of the
 agent loop: think, choose tool, execute, observe and
-respond](/images/ai_agent_day_1.jpg){: width="1400" height="788"}
+respond](/images/ai-agent-day-1.jpg){: width="1400" height="788"}
 
 Recently I decided to build an AI agent "from scratch" in Python. My primary motivation is
 to learn; I want to better understand the technology landscape and how the pieces fit together.

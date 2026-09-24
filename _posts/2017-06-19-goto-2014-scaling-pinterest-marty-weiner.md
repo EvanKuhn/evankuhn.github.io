@@ -5,7 +5,12 @@ author: Evan Kuhn
 date: 2017-06-19 19:05:00 -0400
 categories: techtalks
 description: The evolution of Pinterest's architecture and tech stack, and lessons learned.
+image: /images/scaling-pinterest.jpg
 ---
+
+![A whiteboard titled "Scaling Pinterest" showing users, load balancers, application servers, and
+sharded databases, next to takeaways: scale incrementally, use proven technologies, design for
+failure, and iterate based on data](/images/scaling-pinterest.jpg){: width="1400" height="788"}
 
 From the YouTube video: [GOTO 2014 • Scaling Pinterest • Marty Weiner](https://www.youtube.com/watch?v=jQNCuD_hxdQ) <br/>
 Slides are available [on SlideShare](https://www.slideshare.net/InfoQ/scaling-pinterest)
