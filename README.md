@@ -1,5 +1,5 @@
-# My Blog
-About tech. Mostly to record things I learn, share a few things I know, and hopefully help people solve problems.
+# My Tech Blog
+My blog about tech and software engineering. 
 
 Setup:
 
@@ -21,3 +21,5 @@ bundle install
 bundle exec jekyll build
 bundle exec jekyll serve
 ```
+
+Jekyll will dynamically rebuild the site as you work, which is very nice for local development.
