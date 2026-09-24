@@ -39,7 +39,7 @@ Now say a client connects to node A to execute a query.  One of three things can
 
 Essentially this argument boils down to the fact that in the real world, networks fail.  Once a partition occurs, the system may either:
 
-- refuse to respond / respond with an error, thus favoring consistency (CP), or...
+- refuse to respond, or respond with an error, thus favoring consistency (CP)
 - respond with potentially inconsistent data, thus favoring availability (AP)
 
 Thinking about it in a more realistic way: if we favor availability, we'll also want to choose partition tolerance, because without it, our system won't be available during a network partition.  Thus, we can either choose AP or CP.

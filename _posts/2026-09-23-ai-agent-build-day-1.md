@@ -7,18 +7,18 @@ categories: ai
 description: Progress and lessons from building an AI agent in Python
 ---
 
-Recently I decided to build an AI agent "from scratch", using Python. My primary motivation is
-learning; I want to better understand the technology landscape and how the pieces fit together.
-This post covers my progress and learnings from my work yesterday.
+Recently I decided to build an AI agent "from scratch" in Python. My primary motivation is
+to learn; I want to better understand the technology landscape and how the pieces fit together.
+This post covers my progress and learnings from my first day of work.
 
 I'm using Ollama to run models locally, Python to interact with the models via the ollama package,
-and Claude as my AI coding assistant. I built a small proof-of-concept earlier, which makes a single
-call to the LLM and prints the results.
+and Claude as my AI coding assistant. I have a small proof-of-concept that makes a single
+call to the LLM and prints the results; this served as my starting point.
 
-My GitHub repo: [github.com/EvanKuhn/agents](https://github.com/EvanKuhn/agents)
+All code will be pushed to my GitHub repo, here: [github.com/EvanKuhn/agents](https://github.com/EvanKuhn/agents)
 
 ## Progress
-Yesterday's accomplishments:
+Today's accomplishments:
 
 - Add `PLAN.md` to list and track project milestones.
 - Add a loop to the agent, and add in-context memory. Previous messages are saved and fed back into
@@ -37,30 +37,30 @@ Ollama uses structured JSON for API input and output. The format is based on wor
 
 - OpenAI's [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview)
   (March 2023) introduced a `messages` array of `{role, content}` objects using
-  `system`/`user`/`assistant`. This replaced the older single-string prompt APIs and was widely
-  copied.
+  `system`/`user`/`assistant` roles. This format replaced the older single-string prompt APIs and
+  widely copied upon release.
 - OpenAI's [function calling](https://developers.openai.com/api/docs/guides/function-calling)
-  (June 2023) expected function calls to be passed using a JSON schema. Each tool has `name`,
+  (June 2023) expects function calls to be passed using a JSON schema. Each tool has `name`,
   `description`, and `parameters` fields, which the model can reference for tool calls.
 
-Ollama's native `/api/chat` format is heavily influenced by OpenAI's work, but not identical.
+Ollama's native `/api/chat` format is heavily influenced by OpenAI's work, but is not identical.
 However, Ollama does provide an OpenAI-compatible endpoint at `/v1/chat/completions`, which allows
 software written for the OpenAI API to instead use Ollama.
 
 ### Model Types and Tool Use
 
-The biggest learning today was around tool use. Though it's unsurprising in hindsight, I was unaware
+The biggest learning today was around tool use. Though unsurprising in hindsight, I was unaware
 of the extent to which different models succeed or fail with tool use. For example, qwen3 succeeded
 quite well, while llama3.1 struggled significantly. Deepseek-R1 also had trouble, and failed to
 return in a timely manner; either it was still thinking, entered an infinite loop, or something else
 failed during the test.
 
 Other failure modes include: calling tools too frequently, or not at all; pretending to call tools;
-and hallucinating tool output. Models also may not trust tool output. For example, qwen3 did not
+and hallucinating tool output. Models may not trust tool output. For example, qwen3 did not
 believe the date was 2026, as its training had completed in Dec 2023.
 
 The system prompt can have a large effect on successful tool use. The models need to be told that
-they have access to tools, guidance on how to use them, and instruction to trust tool output.
+they have access to tools, given guidance on how to use them, and instructed to trust tool output.
 Details on each tool's definition are also important; more on that below.
 
 There are a number of things that can affect tool usage:
@@ -180,3 +180,10 @@ Take Claude Code as an example:
 A local setup might follow the same pattern: a Deepseek **model** served by Ollama's llama.cpp/GGLM
 **runtime**, driven by a LangChain-based (**framework**) **harness**, which together make an
 **agent**.
+
+## What's next
+
+As noted in my
+[PLAN.md](https://github.com/EvanKuhn/agents/blob/a472f05efaea83b70d105a38c38415edeb456167/PLAN.md),
+I'll be adding a ReAct-style reasoning loop (including multiple tool calls), and support for
+procedural memory and skills.
