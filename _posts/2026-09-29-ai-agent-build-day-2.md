@@ -89,15 +89,41 @@ def handle_user_prompt(user_prompt, messages)
 
 One important piece of complexity to point out in the above pseudocode is _management of the context_,
 which refers to saving the model responses and tool call results to a special `messages` array.
-This array is fed back into the model with each call. Additionally, we discovered that we also
-need to store the thinking traces to the `messages` array, so that the model could access its
-recent reasoning. Without this, its chain of thought would be forgotten.
+This array is fed back into the model with each call. It turned out the model's thinking needs to
+be saved there too, which I only discovered by accident (more on that below).
 
 Additionally, we added a simple guardrail around the number of ReAct iterations. It should be
 obvious that the agent could potentially enter an infinite loop of reasoning and action, so we
 cap the maximum number of iterations at a small number (ten, in this case). For the small
 proof-of-concept agent we are building, that's fine, though of course this limits the complexity
 of problems that the agent could solve.
+
+## A Subtle Bug: Forgotten Reasoning
+
+With the loop in place, I asked a question: ReAct is supposed to be think, act, observe, then
+_think again_. Is the model really reasoning between its tool calls, or just planning them all up
+front?
+
+The loop did allow reasoning between calls: every round is a separate request to the model, and it
+thinks before deciding each next step. But the model's thinking was being thrown away after every
+round. Only the reply text and the tool calls were saved to `messages`. So in round 2, the model
+could see _what_ tools it had called in round 1, and what came back, but not _why_ it had made
+those calls.
+
+Whether that matters depends on the model's chat template, which I touch on below. qwen3's
+template turns out to be designed for exactly this pattern: it puts the model's earlier thinking
+back into the prompt, but only for messages since the user's latest one. Within a single
+question's tool loop, the model sees its own reasoning from earlier rounds. Thinking from earlier
+questions is dropped, so it doesn't pile up in the context.
+
+The fix was small: save each reply's thinking along with its text and tool calls. It also shaped
+one design detail. When the agent hits its round limit, it adds a note telling the model to stop
+calling tools and answer. That note goes at the end of the last tool result rather than into a new
+user message, because a new user message would make qwen3's template drop all the earlier thinking,
+right before the model's final answer.
+
+The lesson here is that an agent's behavior depends on details below your own code. Nothing crashed,
+and the answers looked fine. But model was reasoning with less information than it should have had.
 
 ## Testing and Results
 
@@ -107,7 +133,7 @@ I tested the agent with a few sample questions:
   - Tests usage of `get_current_time` tool.
 - _How many days until Christmas?_
   - The model _could_ use the `get_current_time` and `calculate` tools, though it isn't required.
-- _What percentage of `PLAN.md` is done?_
+- _What percentage of PLAN.md is done?_
   - Tests usage of the `read_file` tool.
 - _In which file are the CLI's theme colors defined?_
   - Tests usage of `list_files` and `read_file` tools. Requires multiple iterations.
@@ -135,9 +161,9 @@ tools are described to the model:
   it used tools only when they were needed.
 
 The deepseek-r1 result is the most striking: it shares qwen3's base model, yet one used tools well
-and the other couldn't use them at all. How a model is fine-tuned, and how its conversation is
+and the other couldn't use them at all. A model's fine-tuning, and how its conversation is
 formatted, matter as much as the underlying model. All three models report that they support
-tools, so that label alone doesn't tell you whether a model is actually good at using them.
+tools, but that label alone doesn't tell you how well the model can _actually_ use them.
 
 ### Prompt: _Multiply the current hour by 5_
 
@@ -153,7 +179,6 @@ with 100% consistency.
 
 This is an interesting finding: models can perform simple arithmetic via inference. While
 convenient, a tool call would be preferable, for accuracy.
-
 
 ### Prompt: _How many days until Christmas?_
 
@@ -178,8 +203,33 @@ The model initially failed this prompt, as it would list files in the current di
 search subdirectories.
 
 Modifying the prompt to tell it to search subdirectories helped. The model iteratively searched
-until it eventually read the `src/agents/config.py` file. It was then able to correctly infer that
-the themes were defined in the `src/agents/ui.py` file, based on the contents of `config.py`.
+until it eventually read the `src/agents/config.py` file. It then correctly concluded that the
+themes were defined in `src/agents/ui.py`, because `config.py` imports them from there. It got
+there by deduction, though, not verification: it answered without reading `ui.py` to confirm.
+
+### A caveat: context size
+
+All of these tests ran with a context window of only 4,096 tokens. That's Ollama's default when a
+request doesn't ask for more, even though these models support anywhere from 40,000 to 131,000.
+A single round can use most of it: the system prompt, the tool definitions, hundreds of tokens of
+thinking, and the contents of any file read. When the limit is exceeded, Ollama drops the
+oldest part of the conversation, so on longer tool chains the model may have lost track of its own
+earlier steps. It can be raised with Ollama's `num_ctx` option, so these tests are worth rerunning
+with a larger context.
+
+## Lessons Learned
+
+The loop itself turned out to be the easy part: a dozen or so lines of code. The hard parts were
+everything around it:
+
+- **Model judgment.** The loop gives the model room to work through a problem, but the model still
+  decides what to do with it. qwen3 needed a hint to search subdirectories, and preferred mental
+  arithmetic to the calculator.
+- **Chat templates.** How each model's conversation is formatted decided which models could use
+  tools at all, and whether the model could see its own earlier reasoning.
+- **Context.** Every round adds to the conversation. With a small context window, a model can
+  quickly lose earlier reasoning.
+
 
 ## What's next
 
