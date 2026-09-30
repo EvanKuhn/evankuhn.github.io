@@ -32,12 +32,21 @@ layout: default
     <div class="post-grid">
       {%- for post in site.posts %}
         {%- assign topic = post.categories | first %}
-      <a class="card surface{% if forloop.first %} is-lead{% endif %}" href="{{ post.url | relative_url }}" data-topic="{{ topic }}">
+        {%- comment -%}
+          Posts without their own image get /favicon.png from _config.yml
+          defaults, for link previews. Don't show that on the card.
+        {%- endcomment -%}
+        {%- assign card_image = post.image %}
+        {%- if card_image == "/favicon.png" %}{% assign card_image = nil %}{% endif %}
+      <a class="card surface{% if forloop.first %} is-lead{% endif %}{% if card_image %} has-image{% endif %}" href="{{ post.url | relative_url }}" data-topic="{{ topic }}">
         <span class="eyebrow">Latest post</span>
         {% include topic-chip.html topic=topic %}
         <h3>{{ post.title | escape }}</h3>
         <p>{{ post.description | escape }}</p>
         <span class="when">{{ post.date | date: "%b %-d, %Y" }} · {% include reading-time.html content=post.content %}</span>
+        {%- if card_image %}
+        <img class="card-image" src="{{ card_image | relative_url }}" alt=""{% unless forloop.first %} loading="lazy"{% endunless %}>
+        {%- endif %}
       </a>
       {%- endfor %}
       <div class="grid-head">

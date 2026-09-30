@@ -302,6 +302,7 @@ img { max-width: 100%; height: auto; }
   p { margin: 0; font-size: 0.9rem; color: var(--muted); }
   &:hover h3 { color: var(--accent); }
   .eyebrow { display: none; }
+  .card-image { display: none; }
 }
 
 .card.is-lead {
@@ -321,6 +322,25 @@ img { max-width: 100%; height: auto; }
   }
   h3 { font-size: 1.65rem; line-height: 1.15; }
   p { font-size: 1rem; max-width: 60ch; }
+}
+
+// The lead card shows the post's image to the right of the text.
+// height: 0 + min-height: 100% keeps the image from setting the row heights,
+// so it fills the text's height instead of stretching the rows apart.
+.card.is-lead.has-image {
+  grid-template-columns: minmax(0, 1fr) min(40%, 340px);
+  column-gap: 26px;
+
+  .card-image {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 5;
+    width: 100%;
+    height: 0;
+    min-height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 }
 
 .when {
@@ -348,6 +368,18 @@ img { max-width: 100%; height: auto; }
   .topic { width: auto; white-space: nowrap; box-shadow: 0 0 0 1px var(--rule); }
   .card.is-lead { padding: 20px; }
   .card.is-lead h3 { font-size: 1.4rem; }
+
+  // Too narrow for side by side: put the image above the text.
+  .card.is-lead.has-image { grid-template-columns: minmax(0, 1fr); }
+  .card.is-lead.has-image .card-image {
+    grid-column: 1;
+    grid-row: auto;
+    order: -1;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 4px;
+  }
 }
 
 // ---------------------------------------------------------------
